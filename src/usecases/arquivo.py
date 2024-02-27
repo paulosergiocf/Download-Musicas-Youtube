@@ -1,6 +1,6 @@
-from usecases.util import Util
-from usecases.logger import Logger
-from usecases.exceptions import ArquivoException
+from src.usecases.util import Util
+from src.usecases.logger import Logger
+from src.usecases.exceptions import ArquivoException
 import os
 
 class Arquivo:
@@ -29,7 +29,7 @@ class Arquivo:
     def conteudo(self):
         return self.__conteudo
         
-    def adicionarLinha(self, linha: str):
+    def __adicionarLinha(self, linha: str):
         """
         adicionar linha de arquivo.
         """
@@ -53,7 +53,7 @@ class Arquivo:
                 
                 self.__nome_arquivo = os.path.basename(self.localizacao)
                 for linha in arquivo:
-                    self.adicionarLinha(linha)
+                    self.__adicionarLinha(linha)
         
         else:
             self.__logger.log_error("arquivo inexistente!")
