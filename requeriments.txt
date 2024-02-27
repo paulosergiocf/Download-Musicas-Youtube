@@ -1,0 +1,2 @@
+coverage==7.4.3
+pytube==15.0.0

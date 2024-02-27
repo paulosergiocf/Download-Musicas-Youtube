@@ -6,3 +6,4 @@ resultado
 logs/*
 playlist.txt
 playlist_teste.txt
+__pycache__
