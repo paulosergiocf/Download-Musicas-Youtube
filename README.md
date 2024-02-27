@@ -2,6 +2,9 @@
 
 > Ferramenta para baixar musica do youtube.
 
+[![Python application](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml/badge.svg)](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml) [![Python application]
+(https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml/badge.svg?event=issues)](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml)
+
 ## Objetivo
 
 O que motivou a criação dessa ferramenta foi a necessidade de adicionar musicas Mp3 a um pendrive para poder ouvir no carro.
