@@ -5,7 +5,7 @@ import os
 
 class TestUtil(unittest.TestCase):
     def setUp(self):
-        self.arquivo = 'playlist.txt'
+        self.arquivo = 'tests/playlist_test.txt'
         self.diretorio = os.getcwd()
     
     # ------------- FUNCIONALIDADE REMOVER EXTENÇÃO DE ARQUIVOS---------------

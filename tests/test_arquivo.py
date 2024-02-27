@@ -9,7 +9,7 @@ class TestArquivo(unittest.TestCase):
         Descrição
             Instancia objeto arquivo.
         """
-        self.arquivo = Arquivo('playlist.txt') 
+        self.arquivo = Arquivo('tests/playlist_test.txt') 
 
     def test_localizacao(self):
         """
