@@ -17,7 +17,7 @@ class TestUtil(unittest.TestCase):
             Resultado esperado: nome do arquivo sem e extensão.
         """
         resultado = Util.arquivo_remover_extensao(self.arquivo)
-        self.assertEqual(resultado, 'playlist')
+        self.assertEqual(resultado, 'playlist_test')
         
     def test_arquivo_remover_extensao_diretorio(self):
         """

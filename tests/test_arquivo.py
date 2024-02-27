@@ -16,14 +16,14 @@ class TestArquivo(unittest.TestCase):
             Descrição:
                 testa se o atributo localizão foi definido corretamente.
         """
-        self.assertEqual(self.arquivo.localizacao, 'playlist.txt')
+        self.assertEqual(self.arquivo.localizacao, 'tests/playlist_test.txt')
 
     def test_nome_arquivo(self):
         """
             Descrição:
                 testa se o atributo nome_arquivo foi definido corretamente.
         """
-        self.assertEqual(self.arquivo.nome_arquivo, 'playlist.txt')
+        self.assertEqual(self.arquivo.nome_arquivo, 'playlist_test.txt')
 
     def test_ler_arquivo(self):
         """
