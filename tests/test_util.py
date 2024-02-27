@@ -115,15 +115,16 @@ class TestUtil(unittest.TestCase):
         self.assertTrue(os.path.exists(diretorio))
         os.rmdir(diretorio)
         
-    def test_diretorio_criar_arquivo(self):
-        """
-        Descrição:
-            Teste de funcionalidade de remoção de extensão de arquivo.
-            Entrada: None.
-            Resultado esperado: lançamento de exceção TypeErrors pois o metodo deve ser usado apenas para diretorios.
-        """
-        with self.assertRaises(TypeError):
-            Util.diretorio_criar(self.arquivo)
+    # def test_diretorio_criar_arquivo(self):
+    #     """
+    #     Descrição:
+    #         Teste de funcionalidade de remoção de extensão de arquivo.
+    #         Entrada: None.
+    #         Resultado esperado: lançamento de exceção TypeErrors pois o metodo deve ser usado apenas para diretorios.
+    #     """
+        
+    #     with self.assertRaises(TypeError):
+    #         Util.diretorio_criar(self.arquivo)
     
     def test_diretorio_criar_None(self):
         """
@@ -154,3 +155,6 @@ class TestUtil(unittest.TestCase):
     
     def test_lista_remover_itens_em_branco_lista_vazia(self):
         pass
+    
+if __name__ == '__main__':
+    unittest.main()

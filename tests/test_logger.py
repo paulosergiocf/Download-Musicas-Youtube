@@ -19,4 +19,5 @@ class TestLogger(unittest.TestCase):
         self.assertIsNotNone(logger.handlers)
         mock_manipulacao_arquivo.assert_called_once_with(logger.arquivo_log, mode='a', encoding='utf-8')
 
-    
+if __name__ == '__main__':
+    unittest.main()

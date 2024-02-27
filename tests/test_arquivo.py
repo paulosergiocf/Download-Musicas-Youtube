@@ -34,3 +34,6 @@ class TestArquivo(unittest.TestCase):
         self.arquivo._Arquivo__ler_arquivo()  
         self.assertIsNotNone(self.arquivo.nome_arquivo)
         self.assertNotEqual(len(self.arquivo._Arquivo__conteudo), 0)
+
+if __name__ == '__main__':
+    unittest.main()
