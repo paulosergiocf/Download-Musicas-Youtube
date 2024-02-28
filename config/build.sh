@@ -12,3 +12,9 @@ rm -r -v build
 
 # remover arquivo .spex
 rm 'audio_downloader_youtube.spec'
+
+# comprimir aplicação.
+zip -r dist/audio_downloader_youtube.zip dist/audio_downloader_youtube
+
+# remover aquivo sem compressão
+rm -r -v 'dist/audio_downloader_youtube'
