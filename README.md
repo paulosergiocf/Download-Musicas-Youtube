@@ -1,10 +1,14 @@
 # Download Musicas Youtube
 
 > Ferramenta para baixar musica do youtube.
+### Build
 
 [![Build](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml/badge.svg)](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml) 
 
+### Issues
+
 [![Issues](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml/badge.svg?event=issues)](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml)
+
 
 ## Objetivo
 

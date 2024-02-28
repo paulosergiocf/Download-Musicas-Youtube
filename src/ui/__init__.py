@@ -39,8 +39,9 @@ class App(tk.Frame):
         estilo_progresso = ttk.Style()
         estilo_progresso.theme_use('default')
         estilo_progresso.configure("TProgressbar", thickness=10, foreground=self.ROSA_CLARO, background=self.ROSA_CLARO)
+        photo = tk.PhotoImage(file ='img/botao-play.png')
+        self.janela.iconphoto(False, photo)
         self.__logger.log_info("carregada as configurações da interface")
-        
 
     def iniciarServico(self):
         """

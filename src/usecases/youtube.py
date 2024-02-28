@@ -8,7 +8,8 @@ class YouTubeTool():
         self.__logger = Logger(nome='YouTubeTool')
         
     def download_audio(self, destino, url: str):
-        """_summary_
+        """
+        Descrição
 
         Args:
             destino (str): local de salvamente do arquivo
