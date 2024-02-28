@@ -41,9 +41,7 @@ jobs:
         python -m unittest
     - name: Gerar executavel linux
       run: |
-        actions/upload-artifact@v2
         bash config/build.sh
-
     - name: Salvar executável como artefato
       uses: actions/upload-artifact@v4
       with:
