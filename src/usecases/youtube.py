@@ -24,7 +24,7 @@ class YouTubeTool():
             self.__logger.log_info(f"download: {novo_nome} concluído com sucesso!")
         
         except Exception as erro:
-            self.__logger.log_error(f"Erro ao baixar {novo_nome} na url {url} - {erro}")
+            self.__logger.log_error(f"Erro ao baixar  na url {url} - {erro}")
             raise YouTubeToolException(f"Erro ao realizar download do audio: {erro}")
         
        

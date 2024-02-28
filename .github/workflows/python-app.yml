@@ -28,7 +28,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8
         pip install pytube
-        pip install auto-py-to-exe
         pip install -r requeriments.txt
     - name: Lint com flake8
       run: |
@@ -39,12 +38,4 @@ jobs:
     - name: Teste com unittest
       run: |
         python -m unittest
-    - name: Gerar executavel linux
-      run: |
-        bash config/build.sh
-    - name: Salvar executável como artefato
-      uses: actions/upload-artifact@v4
-      with:
-        name: 'Audio youtube download'
-        path: 'dist/Audio youtube download'
-        compression-level: 0
+    

@@ -147,14 +147,53 @@ class TestUtil(unittest.TestCase):
             Util.diretorio_criar("")
     
     # ----------------------- LIMPAR ITENS EM BRANCO DA LISTA -----------------------------------
-    def test_lista_remover_itens_em_branco(self):
-        pass
+    def test_lista_remover_itens_em_branco_com_items_em_branco_e_espaco(self):
+        """
+        Descrição:
+            Teste função de remover items em branco de lista.
+            Entrada: lista com items em branco e items em branco com espaço
+            Resultado esperado: 
+                - lista sem os items em branco.
+        """
+        entrada = ['item1', '   ', 'item2', '', 'item3']
+        resultado = Util.lista_remover_itens_em_branco(entrada)
+        self.assertEqual(resultado, ['item1', 'item2', 'item3'])
     
-    def test_lista_remover_itens_em_branco_sem_lista(self):
-        pass
+    def test_lista_remover_itens_em_branco_sem_items_em_branco(self):
+        """
+        Descrição:
+            Teste função de remover items em branco de lista.
+            Entrada: lista sem nenhum item em branco
+            Resultado esperado: 
+                - lista sem os items em branco.
+        """
+        entrada = ['item1', 'item2', 'item3']
+        resultado = Util.lista_remover_itens_em_branco(entrada)
+        self.assertEqual(resultado, entrada)
     
     def test_lista_remover_itens_em_branco_lista_vazia(self):
-        pass
+        """
+        Descrição:
+            Teste função de remover items em branco de lista.
+            Entrada: lista vazia
+            Resultado esperado: 
+                - lista vazia.
+        """
+        entrada = []
+        resultado = Util.lista_remover_itens_em_branco(entrada)
+        self.assertEqual(resultado, [])
     
+   
+    def test_lista_remover_itens_em_branco_none(self):
+        """
+        Descrição:
+            Teste função de remover items em branco de lista.
+            Entrada: lista com items em branco e items em branco com espaço
+            Resultado esperado: 
+                - TypeError.
+        """
+        with self.assertRaises(TypeError):
+            Util.lista_remover_itens_em_branco(None)
+      
 if __name__ == '__main__':
     unittest.main()

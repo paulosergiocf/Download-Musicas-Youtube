@@ -3,12 +3,7 @@
 > Ferramenta para baixar musica do youtube.
 ### Build
 
-[![Build](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml/badge.svg)](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml) 
-
-### Issues
-
-[![Issues](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml/badge.svg?event=issues)](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml)
-
+[![Versão do Python](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-380/) [![Cobertura de Testes](https://img.shields.io/badge/coverage-65%25-brightgreen)](link_para_relatorio_de_cobertura) [![Build](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml/badge.svg)](https://github.com/paulosergiocf/Download-Musicas-Youtube/actions/workflows/python-app.yml) 
 
 ## Objetivo
 
@@ -58,3 +53,16 @@ Execução.
     python main.py
 
 ```
+
+
+## Gerar executavel.
+
+Execute script a partir da pasta do projeto.
+
+```sh
+
+    bash config/build.sh
+
+```
+Execute a aplicação clicando no executavel dentro da pasta __dist/audio_downloader_youtube__
+
