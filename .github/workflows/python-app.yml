@@ -45,7 +45,8 @@ jobs:
         bash config/build.sh
 
     - name: Salvar executável como artefato
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
-        name: executavel
+        name: 'Audio youtube download'
         path: 'dist/Audio youtube download'
+        compression-level: 0
