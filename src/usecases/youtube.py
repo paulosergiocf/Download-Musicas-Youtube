@@ -22,7 +22,7 @@ class YouTubeTool():
             novo_nome = f"{Util.arquivo_remover_extensao(nome_original)}.mp3"
             audio.download(output_path=destino, filename=(novo_nome if novo_nome else f"{nome_original}.mp3"))
             self.__logger.log_info(f"download: {novo_nome} concluído com sucesso!")
-        
+
         except Exception as erro:
             self.__logger.log_error(f"Erro ao baixar  na url {url} - {erro}")
             raise YouTubeToolException(f"Erro ao realizar download do audio: {erro}")

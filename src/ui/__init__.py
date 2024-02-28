@@ -2,17 +2,15 @@ import threading
 import os
 import tkinter as tk
 from tkinter import font, filedialog, ttk
-
 from src.services.service import Service
 from src.usecases.logger import Logger
 from src.usecases.util import Util
 
 class App(tk.Frame):
     # ------- Cores --------
-    CINZA_ESCURO = "#0D0D0D"
-    ROSA_ESCURO = "#A61F38"
-    ROSA_CLARO = "#F2385A"
-    MARRON_ESCURO = "#260202"
+    FUNDO = "#23272B" #"#0D0D0D"
+    FUNDO_2 = "#242424"
+    ROSA_CLARO = "#7E3735"
     LARANJA_MOSTARDA = "#8C3F23"
     CINZA_CLARO = "#F2F2F2"
     # ------- Fonte --------
@@ -35,10 +33,12 @@ class App(tk.Frame):
         """ 
         self.janela.geometry("800x500")
         self.janela.title("Audio youtube download")
-        self.janela["bg"] = self.CINZA_ESCURO
+        self.janela["bg"] = self.FUNDO
         estilo_progresso = ttk.Style()
         estilo_progresso.theme_use('default')
         estilo_progresso.configure("TProgressbar", thickness=10, foreground=self.ROSA_CLARO, background=self.ROSA_CLARO)
+        estilo_progresso.configure("", thickness=10, foreground=self.ROSA_CLARO, background=self.ROSA_CLARO)
+        
         photo = tk.PhotoImage(file ='img/botao-play.png')
         self.janela.iconphoto(False, photo)
         self.__logger.log_info("carregada as configurações da interface")
@@ -61,14 +61,14 @@ class App(tk.Frame):
              
         container_texto = self.container(self.container_principal, margem_vertical=10)
         container_texto.pack()
-        texto = tk.Label(container_texto, text="Insira o arquivo com a playlist do youtube.",font=self.FONTE, bg=self.CINZA_ESCURO, fg=self.CINZA_CLARO)
+        texto = tk.Label(container_texto, text="Insira o arquivo com a playlist do youtube.",font=self.FONTE, bg=self.FUNDO, fg=self.CINZA_CLARO)
         texto.pack()
         
         container_diretorio = self.container(self.container_principal, margem_vertical=10)
         container_diretorio.pack()
-        self.botao_selecionado = tk.Button(container_diretorio,text="Selecionar arquivo com playlist", relief="flat", font=self.FONTE, border=0, bg=self.ROSA_ESCURO, fg=self.CINZA_CLARO, width=35, height=0, command=self.arquivoSelecionar)
+        self.botao_selecionado = tk.Button(container_diretorio,text="Selecionar arquivo com playlist", relief="flat", font=self.FONTE, border=0, bg=self.FUNDO_2, fg=self.CINZA_CLARO, width=35, height=0, command=self.arquivoSelecionar)
         self.botao_selecionado.pack()
-        self.entrada = tk.Label(container_diretorio, text="", font=self.FONTE, bg=self.CINZA_ESCURO, fg=self.ROSA_CLARO)
+        self.entrada = tk.Label(container_diretorio, text="", font=self.FONTE, bg=self.FUNDO, fg=self.CINZA_CLARO)
         self.entrada.pack()
         
         self.container_progresso = self.container(self.container_principal, margem_vertical=10)
@@ -76,12 +76,13 @@ class App(tk.Frame):
         
         container_botao = self.container(self.container_principal, margem_vertical=10)
         container_botao.pack()
-        self.botao_saida = tk.Button(container_botao,text="Dir. saida", relief="flat", state=tk.DISABLED, font=self.FONTE, border=0, bg=self.ROSA_ESCURO, fg=self.CINZA_CLARO, width=10, height=1, command=self.diretorio_selecionar)
+        self.botao_saida = tk.Button(container_botao,text="Salva em...", relief="flat", state=tk.DISABLED, font=self.FONTE, border=0, bg=self.FUNDO_2, fg=self.CINZA_CLARO, width=10, height=1, command=self.diretorio_selecionar)
         self.botao_saida.pack(side='left')
-        self.botao_download = tk.Button(container_botao,text="Download", relief="flat", state=tk.DISABLED ,font=self.FONTE, border=0, bg=self.ROSA_ESCURO, fg=self.CINZA_CLARO, width=10, height=1, command=self.baixar_arquivos)
+        self.botao_download = tk.Button(container_botao,text="Download", relief="flat", state=tk.DISABLED ,font=self.FONTE, border=0, bg=self.FUNDO_2, fg=self.CINZA_CLARO, width=10, height=1, command=self.baixar_arquivos)
         self.botao_download.pack(side='left')
-        botao_sair = tk.Button(container_botao,text="Sair", relief="flat", state=tk.ACTIVE ,font=self.FONTE, border=0, bg=self.ROSA_ESCURO, fg=self.CINZA_CLARO, width=10, height=1, command=self.janela.quit)
+        botao_sair = tk.Button(container_botao,text="Sair", relief="flat", state=tk.ACTIVE ,font=self.FONTE, border=0, bg=self.FUNDO_2, fg=self.CINZA_CLARO, width=10, height=1, command=self.janela.quit)
         botao_sair.pack(side='left')
+        
         
     def progresso(self):
         """Descrição
@@ -89,7 +90,7 @@ class App(tk.Frame):
         """
         self.progresso = self.container(self.container_progresso, margem_vertical=10)
         self.progresso.pack()
-        self.info = tk.Label(self.progresso, text=(f"{len(self.service.arquivo.conteudo)} midia(s) no arquivo"), font=self.FONTE, bg=self.CINZA_ESCURO, fg=self.ROSA_CLARO)
+        self.info = tk.Label(self.progresso, text=(f"{len(self.service.arquivo.conteudo)} midia(s) no arquivo"), font=self.FONTE, bg=self.FUNDO, fg=self.CINZA_CLARO)
         self.info.pack()
         self.progresso = ttk.Progressbar(self.progresso, orient="horizontal", length=300, mode="determinate", style="TProgressbar")
         self.progresso.pack(pady=20)
@@ -99,16 +100,24 @@ class App(tk.Frame):
         Descrição:
             Cria thread para download de midias e verifica status do progresso atualizando interface grafica.
         """
+        self.botao_saida["state"]=tk.DISABLED
+        
         self.progresso["maximum"] = (len(self.service.arquivo.conteudo)-1)
-        download = threading.Thread(target=self.download)
-        download.start()
+        self.download_thread = threading.Thread(target=self.download)
+        self.download_thread.start()
        
-        while self.service.progresso != len(self.service.arquivo.conteudo):
+        while (self.service.progresso + self.service.fracasso) != len(self.service.arquivo.conteudo):
             self.progresso["value"] = self.service.progresso
             self.progresso.update()
-            self.info["text"] = f"{self.service.progresso}/{len(self.service.arquivo.conteudo)}"
-               
-        self.info["text"] = "Download concluído com sucesso."
+            self.info["text"] = f"{self.service.progresso}/{len(self.service.arquivo.conteudo)} aguarde . . ."
+        
+        self.progresso.forget()
+        
+        foi_sucesso = self.service.progresso == len(self.service.arquivo.conteudo)
+        sucesso = f"sucesso: {self.service.progresso} concluídos."
+        fracasso = f"sucesso: {self.service.progresso} - fracasso: {self.service.fracasso}"
+        self.info["text"] = f"Operação concluída.\n {(sucesso if foi_sucesso else fracasso)}"
+        
     def download(self):
         """
         Descrição:
@@ -116,11 +125,10 @@ class App(tk.Frame):
         """
         self.botao_download['state'] = tk.DISABLED
         self.service.download(destino=self.diretorio_saida)
-        return
         
-    
+
     # --------------------------------------------------------------------------------
-    def container(self, janela, fundo=CINZA_ESCURO, margem_horizontal=5, margem_vertical=5):
+    def container(self, janela, fundo=FUNDO, margem_horizontal=5, margem_vertical=5):
         """
         Descrição
         
@@ -138,10 +146,19 @@ class App(tk.Frame):
         return container
     
     def arquivoSelecionar(self):
-        
-        janela_selecao = tk.Frame(self.janela)
+        """
+        Descrição
+            Selecionar arquivo de texto.
+        """
+        janela_selecao = self.container(self.janela)
+        janela_selecao.pack()
+
         tipos = [('text files', '.txt'), ('all files', '.*')]
-        arquivo = filedialog.askopenfilename(parent=janela_selecao,filetypes=tipos, initialdir=os.getcwd(), title="Selecione a playlist")
+        arquivo = filedialog.askopenfilename(
+            parent=janela_selecao,
+            filetypes=tipos, 
+            initialdir=os.getcwd(), 
+            title="Selecione a playlist")
         
         if arquivo:
             self.entrada["text"] = arquivo
@@ -153,8 +170,17 @@ class App(tk.Frame):
             self.progresso()
     
     def diretorio_selecionar(self):
-        janela_selecao = tk.Frame(self.janela)
-        diretorio = filedialog.askdirectory(parent=janela_selecao, initialdir=os.getcwd(), title="Selecione a diretorio de saida")
+        """
+        Descrição
+            Selecionar pasta de destino.
+        """
+        janela_selecao = self.container(self.janela)
+        janela_selecao.pack()
+        
+        diretorio = filedialog.askdirectory(
+            parent=janela_selecao, 
+            initialdir=os.getcwd(), 
+            title="Selecione a diretorio de saida")
         
         if diretorio:
             self.diretorio_saida = diretorio
